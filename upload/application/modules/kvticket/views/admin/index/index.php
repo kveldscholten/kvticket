@@ -60,6 +60,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('editTickets') as $ticket): ?>
+                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
@@ -95,6 +96,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('compTickets') as $ticket): ?>
+                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
@@ -128,6 +130,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('closeTickets') as $ticket): ?>
+                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
