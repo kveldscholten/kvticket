@@ -61,7 +61,8 @@ class Index extends \Ilch\Controller\Admin
         $this->getView()->set('tickets', $ticketMapper->getTickets())
             ->set('openTickets', $ticketMapper->getTickets(['status' => '0']))
             ->set('editTickets', $ticketMapper->getTickets(['status' => '1']))
-            ->set('closeTickets', $ticketMapper->getTickets(['status' => '2']));
+            ->set('compTickets', $ticketMapper->getTickets(['status' => '2']))
+            ->set('closeTickets', $ticketMapper->getTickets(['status' => '3']));
     }
 
     public function treatAction() 
