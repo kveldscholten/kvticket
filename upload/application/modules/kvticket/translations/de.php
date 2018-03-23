@@ -12,8 +12,8 @@ return [
     'datetime' => 'Datum / Uhrzeit',
     'title' => 'Titel',
     'desc' => 'Beschreibung',
-    'openTickets' => 'Offen ',
-    'editTickets' => 'in Bearbeitung',
+    'openTickets' => 'Offen',
+    'editTickets' => 'In Bearbeitung',
     'compTickets' => 'Erledigt',
     'closeTickets' => 'Geschlossen',
     'noTickets' => 'Keine Tickets vorhanden',
@@ -21,4 +21,5 @@ return [
     'addButton' => 'Hinzufügen',
     'show' => 'Anzeigen',
     'back' => 'Zurück',
+    'search' => 'Suche',
 ];
