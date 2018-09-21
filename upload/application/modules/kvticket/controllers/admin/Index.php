@@ -8,6 +8,7 @@ namespace Modules\Kvticket\Controllers\Admin;
 
 use Modules\Kvticket\Mappers\Ticket as TicketMapper;
 use Modules\Kvticket\Models\Ticket as TicketModel;
+use Modules\User\Mappers\User as UserMapper;
 use Ilch\Validation;
 
 class Index extends \Ilch\Controller\Admin
@@ -45,6 +46,7 @@ class Index extends \Ilch\Controller\Admin
     public function indexAction()
     {
         $ticketMapper = new TicketMapper();
+        $userMapper = new UserMapper();
 
         $this->getLayout()->getAdminHmenu()
             ->add($this->getTranslator()->trans('menuTickets'), ['action' => 'index'])
@@ -58,7 +60,8 @@ class Index extends \Ilch\Controller\Admin
             }
         }
 
-        $this->getView()->set('tickets', $ticketMapper->getTickets())
+        $this->getView()->set('userMapper', $userMapper)
+            ->set('tickets', $ticketMapper->getTickets())
             ->set('openTickets', $ticketMapper->getTickets(['status' => '0']))
             ->set('editTickets', $ticketMapper->getTickets(['status' => '1']))
             ->set('compTickets', $ticketMapper->getTickets(['status' => '2']))
@@ -91,7 +94,8 @@ class Index extends \Ilch\Controller\Admin
                 $ticketModel = new TicketModel();
                 if ($this->getRequest()->getParam('id')) {
                     $ticketModel->setId($this->getRequest()->getParam('id'))
-                        ->setStatus($this->getRequest()->getPost('status'));
+                        ->setStatus($this->getRequest()->getPost('status'))
+                        ->setEditor($this->getUser()->getId());
                 }
                 $ticketModel->setTitle($this->getRequest()->getPost('title'))
                     ->setText($this->getRequest()->getPost('text'));

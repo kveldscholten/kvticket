@@ -44,6 +44,13 @@ class Ticket extends \Ilch\Model
     protected $status;
 
     /**
+     * The Editor.
+     *
+     * @var int
+     */
+    protected $editor;
+
+    /**
      * Sets the Id.
      *
      * @param int $id
@@ -93,10 +100,13 @@ class Ticket extends \Ilch\Model
      * Sets the Text.
      *
      * @param string $text
+     * @return $this
      */
     public function setText($text)
     {
         $this->text = (string)$text;
+
+        return $this;
     }
 
     /**
@@ -113,10 +123,13 @@ class Ticket extends \Ilch\Model
      * Sets the Datetime.
      *
      * @param string $datetime
+     * @return $this
      */
     public function setDatetime($datetime)
     {
         $this->datetime = (string)$datetime;
+
+        return $this;
     }
 
     /**
@@ -138,6 +151,29 @@ class Ticket extends \Ilch\Model
     public function setStatus($status)
     {
         $this->status = (int)$status;
+
+        return $this;
+    }
+
+    /**
+     * Gets the Editor.
+     *
+     * @return int
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * Sets the Editor.
+     *
+     * @param int $editor
+     * @return $this
+     */
+    public function setEditor($editor)
+    {
+        $this->editor = (int)$editor;
 
         return $this;
     }

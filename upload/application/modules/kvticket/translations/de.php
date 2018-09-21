@@ -9,6 +9,7 @@ return [
     'menuTickets' => 'Tickets',
     'entry' => 'Eintragen',
     'status' => 'Status',
+    'editor' => 'Bearbeiter',
     'datetime' => 'Datum / Uhrzeit',
     'title' => 'Titel',
     'desc' => 'Beschreibung',

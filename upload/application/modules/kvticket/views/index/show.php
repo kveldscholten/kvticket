@@ -1,6 +1,8 @@
 <?php
+$userMapper = $this->get('userMapper');
 $ticket = $this->get('ticket');
 $datetime = new \Ilch\Date($ticket->getDatetime());
+$user = $userMapper->getUserById($ticket->getEditor());
 ?>
 
 <h1><?=$ticket->getTitle() ?></h1>
@@ -10,6 +12,14 @@ $datetime = new \Ilch\Date($ticket->getDatetime());
     </div>
     <div class="col-lg-8">
         <?=$datetime->format('d.m.Y H:i') ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('editor') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=($user) ? $user->getName() : '' ?>
     </div>
 </div>
 <div class="row">

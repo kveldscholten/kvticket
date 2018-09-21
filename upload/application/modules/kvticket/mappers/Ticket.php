@@ -32,11 +32,12 @@ class Ticket extends \Ilch\Mapper
 
         foreach ($entryArray as $entries) {
             $entryModel = new TicketModel();
-            $entryModel->setId($entries['id']);
-            $entryModel->setTitle($entries['title']);
-            $entryModel->setText($entries['text']);
-            $entryModel->setDatetime($entries['datetime']);
-            $entryModel->setStatus($entries['status']);
+            $entryModel->setId($entries['id'])
+                ->setTitle($entries['title'])
+                ->setText($entries['text'])
+                ->setDatetime($entries['datetime'])
+                ->setStatus($entries['status'])
+                ->setEditor($entries['editor']);
             $tickets[] = $entryModel;
         }
 
@@ -66,7 +67,8 @@ class Ticket extends \Ilch\Mapper
         $fields = [
             'title' => $ticket->getTitle(),
             'text' => $ticket->getText(),
-            'status' => $ticket->getStatus()
+            'status' => $ticket->getStatus(),
+            'editor' => $ticket->getEditor()
         ];
 
         if ($ticket->getId()) {

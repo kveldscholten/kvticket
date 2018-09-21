@@ -1,3 +1,5 @@
+<?php $userMapper = $this->get('userMapper'); ?>
+
 <h1><?=$this->getTrans('menuTickets') ?></h1>
 <?php if ($this->get('tickets')): ?>
     <div class="row">
@@ -14,17 +16,20 @@
                     <colgroup>
                         <col />
                         <col class="col-lg-2" />
-                        <col class="col-lg-2" />
+                        <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th><?=$this->getTrans('title') ?></th>
                             <th><?=$this->getTrans('datetime') ?></th>
+                            <th><?=$this->getTrans('editor') ?></th>
                             <th><?=$this->getTrans('status') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($this->get('tickets') as $ticket): ?>
+                            <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
                             <?php $datetime = new \Ilch\Date($ticket->getDatetime());
                             if ($ticket->getStatus() == 1) {
                                 $ticketCSS = 'info';
@@ -45,12 +50,9 @@
                                         <?=$this->escape($ticket->getTitle()) ?>
                                     </a>
                                 </td>
-                                <td>
-                                    <?=$datetime->format('d.m.Y H:i') ?>
-                                </td>
-                                <td>
-                                    <?=$ticketStatzs ?>
-                                </td>
+                                <td><?=$datetime->format('d.m.Y H:i') ?></td>
+                                <td><?=($user) ? $user->getName() : '' ?></td>
+                                <td><?=$ticketStatzs ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

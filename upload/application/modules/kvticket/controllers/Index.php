@@ -8,6 +8,7 @@ namespace Modules\Kvticket\Controllers;
 
 use Modules\Kvticket\Mappers\Ticket as TicketMapper;
 use Modules\Kvticket\Models\Ticket as TicketModel;
+use Modules\User\Mappers\User as UserMapper;
 use Ilch\Validation;
 
 class Index extends \Ilch\Controller\Frontend
@@ -15,6 +16,7 @@ class Index extends \Ilch\Controller\Frontend
     public function indexAction()
     {
         $ticketMapper = new TicketMapper();
+        $userMapper = new UserMapper();
 
         $this->getLayout()->header()
             ->css('static/css/ticket.css')
@@ -24,7 +26,8 @@ class Index extends \Ilch\Controller\Frontend
         $this->getLayout()->getHmenu()
             ->add($this->getTranslator()->trans('menuTickets'), ['action' => 'index']);
 
-        $this->getView()->set('tickets', $ticketMapper->getTickets())
+        $this->getView()->set('userMapper', $userMapper)
+            ->set('tickets', $ticketMapper->getTickets())
             ->set('openTickets', $ticketMapper->getTickets(['status' => '0']))
             ->set('editTickets', $ticketMapper->getTickets(['status' => '1']))
             ->set('compTickets', $ticketMapper->getTickets(['status' => '2']))
@@ -34,6 +37,7 @@ class Index extends \Ilch\Controller\Frontend
     public function showAction()
     {
         $ticketMapper = new TicketMapper();
+        $userMapper = new UserMapper();
 
         $this->getLayout()->getTitle()
             ->add($this->getTranslator()->trans('menuTickets'));
@@ -44,7 +48,8 @@ class Index extends \Ilch\Controller\Frontend
         $ticketId = $this->getRequest()->getParam('id');
         $checkTicket = $ticketMapper->getTicketById($ticketId);
         if ($checkTicket) {
-            $this->getView()->set('ticket', $ticketMapper->getTicketById($ticketId));
+            $this->getView()->set('userMapper', $userMapper)
+                ->set('ticket', $ticketMapper->getTicketById($ticketId));
         } else {
             $this->redirect()
                 ->withMessage('errorTicket', 'danger')

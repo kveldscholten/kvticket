@@ -10,7 +10,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvticket',
-        'version' => '1.0',
+        'version' => '1.1',
         'icon_small' => 'fa-ticket',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
@@ -41,16 +41,25 @@ class Config extends \Ilch\Config\Install
     {
         return 'CREATE TABLE IF NOT EXISTS `[prefix]_kvticket` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `title` VARCHAR(255) NOT NULL,
-                `text` VARCHAR(255) NOT NULL,
+                `title` VARCHAR(191) NOT NULL,
+                `text` MEDIUMTEXT NOT NULL,
                 `datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `status` INT(11) NOT NULL DEFAULT 0,
+                `editor` INT(11) NOT NULL DEFAULT 0,
                 PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;';
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;';
     }
 
     public function getUpdate($installedVersion)
     {
-        
+        switch ($installedVersion) {
+            case "1.0":
+                // Change VARCHAR length for new table character.
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` MODIFY COLUMN `title` VARCHAR(191) NOT NULL;');
+                // Change text to MEDIUMTEXT
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` MODIFY COLUMN `text` MEDIUMTEXT NOT NULL;');
+                // Add ticket editor
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `editor` INT(11) NOT NULL DEFAULT 0 AFTER `status`;');
+        }
     }
 }
