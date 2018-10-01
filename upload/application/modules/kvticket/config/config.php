@@ -54,6 +54,8 @@ class Config extends \Ilch\Config\Install
     {
         switch ($installedVersion) {
             case "1.0":
+                // Convert tables to new character set and collate
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
                 // Change text to MEDIUMTEXT
                 $this->db()->query('ALTER TABLE `[prefix]_kvticket` MODIFY COLUMN `text` MEDIUMTEXT NOT NULL;');
                 // Add ticket editor
