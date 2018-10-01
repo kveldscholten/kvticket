@@ -41,7 +41,7 @@ class Config extends \Ilch\Config\Install
     {
         return 'CREATE TABLE IF NOT EXISTS `[prefix]_kvticket` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `title` VARCHAR(191) NOT NULL,
+                `title` VARCHAR(255) NOT NULL,
                 `text` MEDIUMTEXT NOT NULL,
                 `datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `status` INT(11) NOT NULL DEFAULT 0,
@@ -54,8 +54,6 @@ class Config extends \Ilch\Config\Install
     {
         switch ($installedVersion) {
             case "1.0":
-                // Change VARCHAR length for new table character.
-                $this->db()->query('ALTER TABLE `[prefix]_kvticket` MODIFY COLUMN `title` VARCHAR(191) NOT NULL;');
                 // Change text to MEDIUMTEXT
                 $this->db()->query('ALTER TABLE `[prefix]_kvticket` MODIFY COLUMN `text` MEDIUMTEXT NOT NULL;');
                 // Add ticket editor

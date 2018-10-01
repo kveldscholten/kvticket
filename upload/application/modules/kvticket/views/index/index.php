@@ -8,7 +8,7 @@
                 <input class="form-control"
                        id="system-search"
                        name="q"
-                       placeholder="Suchen..." />
+                       placeholder="<?=$this->getTrans('search') ?>" />
             </div>
 
             <div class="table-responsive">
@@ -33,16 +33,16 @@
                             <?php $datetime = new \Ilch\Date($ticket->getDatetime());
                             if ($ticket->getStatus() == 1) {
                                 $ticketCSS = 'info';
-                                $ticketStatzs = $this->getTrans('editTickets');
+                                $ticketStatus = $this->getTrans('editTickets');
                             } elseif ($ticket->getStatus() == 2) {
                                 $ticketCSS = 'success';
-                                $ticketStatzs = $this->getTrans('compTickets');
+                                $ticketStatus = $this->getTrans('compTickets');
                             } elseif ($ticket->getStatus() == 3) {
                                 $ticketCSS = 'danger';
-                                $ticketStatzs = $this->getTrans('closeTickets');
+                                $ticketStatus = $this->getTrans('closeTickets');
                             } else {
                                 $ticketCSS = '';
-                                $ticketStatzs = $this->getTrans('openTickets');
+                                $ticketStatus = $this->getTrans('openTickets');
                             } ?>
                             <tr <?=($ticketCSS) ? 'class="'.$ticketCSS.'"' : '' ?>>
                                 <td>
@@ -52,7 +52,7 @@
                                 </td>
                                 <td><?=$datetime->format('d.m.Y H:i') ?></td>
                                 <td><?=($user) ? $user->getName() : '' ?></td>
-                                <td><?=$ticketStatzs ?></td>
+                                <td><?=$ticketStatus ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
