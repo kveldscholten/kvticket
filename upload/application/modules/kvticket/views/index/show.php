@@ -1,5 +1,6 @@
 <?php
 $userMapper = $this->get('userMapper');
+$catMapper = $this->get('catMapper');
 $ticket = $this->get('ticket');
 $datetime = new \Ilch\Date($ticket->getDatetime());
 $user = $userMapper->getUserById($ticket->getEditor());
@@ -38,6 +39,17 @@ $user = $userMapper->getUserById($ticket->getEditor());
         } ?>
     </div>
 </div>
+<?php if ($ticket && $ticket->getCat() > 0): ?>
+<?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('cat') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=$cat->getTitle() ?>
+    </div>
+</div>
+<?php endif; ?>
 <br />
 <div class="row">
     <div class="col-lg-12">

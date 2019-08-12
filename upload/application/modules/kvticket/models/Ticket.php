@@ -51,6 +51,13 @@ class Ticket extends \Ilch\Model
     protected $editor;
 
     /**
+     * The Category.
+     *
+     * @var int
+     */
+    protected $cat;
+
+    /**
      * Sets the Id.
      *
      * @param int $id
@@ -174,6 +181,29 @@ class Ticket extends \Ilch\Model
     public function setEditor($editor)
     {
         $this->editor = (int)$editor;
+
+        return $this;
+    }
+
+    /**
+     * Gets the Category.
+     *
+     * @return int
+     */
+    public function getCat()
+    {
+        return $this->cat;
+    }
+
+    /**
+     * Sets the Category.
+     *
+     * @param int $cat
+     * @return $this
+     */
+    public function setCat($cat)
+    {
+        $this->cat = (int)$cat;
 
         return $this;
     }

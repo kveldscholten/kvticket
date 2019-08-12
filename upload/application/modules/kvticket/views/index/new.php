@@ -1,6 +1,19 @@
 <h1><?=$this->getTrans('entry') ?></h1>
 <form method="POST" class="form-horizontal" action="">
     <?=$this->getTokenField() ?>
+    <div class="form-group">
+        <label for="cat" class="col-lg-2 control-label">
+            <?=$this->getTrans('cat') ?>
+        </label>
+        <div class="col-lg-4">
+            <select class="form-control" id="cat" name="cat">
+                <option value="0" selected></option>
+            <?php foreach ($this->get('cats') as $cat): ?>
+                <option value="<?=$cat->getId() ?>"><?=$cat->getTitle() ?></option>
+            <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
     <div class="form-group <?=$this->validation()->hasError('title') ? 'has-error' : '' ?>">
         <label for="title" class="col-lg-2 control-label">
             <?=$this->getTrans('title') ?>
@@ -25,6 +38,7 @@
                       rows="5"><?=$this->originalInput('text') ?></textarea>
         </div>
     </div>
+    <?php if ($this->get('captchaNeeded')) : ?>
     <div class="form-group <?=$this->validation()->hasError('captcha') ? 'has-error' : '' ?>">
         <label class="col-lg-2 control-label">
             <?=$this->getTrans('captcha') ?>
@@ -51,6 +65,7 @@
             </span>
         </div>
     </div>
+    <?php endif; ?>
     <div class="row">
         <div class="col-lg-offset-2 col-lg-10">
             <?=$this->getSaveBar('addButton', 'Ticket') ?>
