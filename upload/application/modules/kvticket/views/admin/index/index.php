@@ -1,4 +1,5 @@
 <?php $userMapper = $this->get('userMapper'); ?>
+<?php $catMapper = $this->get('catMapper'); ?>
 
 <form class="form-horizontal" method="POST" action="">
     <?=$this->getTokenField() ?>
@@ -15,6 +16,7 @@
                         <col />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -22,6 +24,7 @@
                         <th></th>
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
+                        <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
@@ -30,11 +33,13 @@
                         <?php foreach ($this->get('openTickets') as $ticket): ?>
                             <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
                             <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
+                            <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                             <tr>
                                 <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                                 <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                                 <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                                 <td><?=$this->escape($ticket->getTitle()) ?></td>
+                                <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                                 <td><?=($user) ? $user->getName() : '' ?></td>
                                 <td><?=$datetime->format('d.m.Y H:i') ?></td>
                             </tr>
@@ -55,6 +60,7 @@
                         <col />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -62,6 +68,7 @@
                         <th></th>
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
+                        <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
@@ -70,11 +77,13 @@
                     <?php foreach ($this->get('editTickets') as $ticket): ?>
                         <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
+                        <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
+                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($user) ? $user->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>
@@ -95,6 +104,7 @@
                         <col />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -102,6 +112,7 @@
                         <th></th>
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
+                        <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
@@ -110,11 +121,13 @@
                     <?php foreach ($this->get('compTickets') as $ticket): ?>
                         <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
+                        <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
+                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($user) ? $user->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>
@@ -134,12 +147,14 @@
                         <col />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
                         <th><?=$this->getCheckAllCheckbox('check_tickets') ?></th>
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
+                        <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
@@ -148,10 +163,12 @@
                     <?php foreach ($this->get('closeTickets') as $ticket): ?>
                         <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
+                        <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
+                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($user) ? $user->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>

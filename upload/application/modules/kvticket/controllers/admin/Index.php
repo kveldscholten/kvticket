@@ -7,6 +7,7 @@
 namespace Modules\Kvticket\Controllers\Admin;
 
 use Modules\Kvticket\Mappers\Ticket as TicketMapper;
+use Modules\Kvticket\Mappers\Category as CategoryMapper;
 use Modules\Kvticket\Models\Ticket as TicketModel;
 use Modules\User\Mappers\User as UserMapper;
 use Ilch\Validation;
@@ -27,6 +28,13 @@ class Index extends \Ilch\Controller\Admin
                     'icon' => 'fa fa-plus-circle',
                     'url' => $this->getLayout()->getUrl(['controller' => 'index', 'action' => 'treat'])
                 ]
+            ],
+            [
+                
+                'name' => 'cat',
+                'active' => false,
+                'icon' => 'fa fa-th-list',
+                'url' => $this->getLayout()->getUrl(['controller' => 'cat', 'action' => 'index'])
             ]
         ];
 
@@ -47,6 +55,7 @@ class Index extends \Ilch\Controller\Admin
     {
         $ticketMapper = new TicketMapper();
         $userMapper = new UserMapper();
+        $catMapper = new CategoryMapper();
 
         $this->getLayout()->getAdminHmenu()
             ->add($this->getTranslator()->trans('menuTickets'), ['action' => 'index'])
@@ -65,12 +74,15 @@ class Index extends \Ilch\Controller\Admin
             ->set('openTickets', $ticketMapper->getTickets(['status' => '0']))
             ->set('editTickets', $ticketMapper->getTickets(['status' => '1']))
             ->set('compTickets', $ticketMapper->getTickets(['status' => '2']))
-            ->set('closeTickets', $ticketMapper->getTickets(['status' => '3']));
+            ->set('closeTickets', $ticketMapper->getTickets(['status' => '3']))
+            ->set('catMapper', $catMapper);
     }
 
     public function treatAction() 
     {
         $ticketMapper = new TicketMapper();
+        $catMapper = new CategoryMapper();
+        $userMapper = new UserMapper();
 
         if ($this->getRequest()->getParam('id')) {
             $this->getLayout()->getAdminHmenu()
@@ -83,6 +95,8 @@ class Index extends \Ilch\Controller\Admin
                 ->add($this->getTranslator()->trans('menuTickets'), ['action' => 'index'])
                 ->add($this->getTranslator()->trans('add'), ['action' => 'treat']);
         }
+        $this->getView()->set('cats', $catMapper->getCategorys());
+        $this->getView()->set('users', $userMapper->getUserList());
 
         if ($this->getRequest()->isPost()) {
             $validation = Validation::create($this->getRequest()->getPost(), [
@@ -95,10 +109,11 @@ class Index extends \Ilch\Controller\Admin
                 if ($this->getRequest()->getParam('id')) {
                     $ticketModel->setId($this->getRequest()->getParam('id'))
                         ->setStatus($this->getRequest()->getPost('status'))
-                        ->setEditor($this->getUser()->getId());
+                        ->setEditor($this->getRequest()->getPost('editor'));
                 }
                 $ticketModel->setTitle($this->getRequest()->getPost('title'))
-                    ->setText($this->getRequest()->getPost('text'));
+                    ->setText($this->getRequest()->getPost('text'))
+                    ->setCat($this->getRequest()->getPost('cat'));
                 $ticketMapper->save($ticketModel);
 
                 $this->redirect()
