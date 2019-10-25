@@ -107,12 +107,12 @@ class Index extends \Ilch\Controller\Admin
             if ($validation->isValid()) {
                 $ticketModel = new TicketModel();
                 if ($this->getRequest()->getParam('id')) {
-                    $ticketModel->setId($this->getRequest()->getParam('id'))
-                        ->setStatus($this->getRequest()->getPost('status'))
-                        ->setEditor($this->getRequest()->getPost('editor'));
+                    $ticketModel->setId($this->getRequest()->getParam('id'));
                 }
                 $ticketModel->setTitle($this->getRequest()->getPost('title'))
                     ->setText($this->getRequest()->getPost('text'))
+                    ->setStatus($this->getRequest()->getPost('status'))
+                    ->setEditor($this->getRequest()->getPost('editor'))
                     ->setCat($this->getRequest()->getPost('cat'));
                 $ticketMapper->save($ticketModel);
 

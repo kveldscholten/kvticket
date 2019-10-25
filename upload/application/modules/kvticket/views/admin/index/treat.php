@@ -1,21 +1,19 @@
 <h1><?=($this->get('ticket') != '') ? $this->getTrans('edit') : $this->getTrans('add') ?></h1>
 <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
     <?=$this->getTokenField() ?>
-    <?php if ($this->get('ticket') != ''): ?>
-        <div class="form-group">
-            <label for="status" class="col-lg-2 control-label">
-                <?=$this->getTrans('status') ?>
-            </label>
-            <div class="col-lg-4">
-                <select class="form-control" id="status" name="status">
-                    <option value="0" <?=($this->get('ticket')->getStatus() == 0) ? 'selected' : '' ?>><?=$this->getTrans('openTickets') ?></option>
-                    <option value="1" <?=($this->get('ticket')->getStatus() == 1) ? 'selected' : '' ?>><?=$this->getTrans('editTickets') ?></option>
-                    <option value="2" <?=($this->get('ticket')->getStatus() == 2) ? 'selected' : '' ?>><?=$this->getTrans('compTickets') ?></option>
-                    <option value="3" <?=($this->get('ticket')->getStatus() == 3) ? 'selected' : '' ?>><?=$this->getTrans('closeTickets') ?></option>
-                </select>
-            </div>
+    <div class="form-group">
+        <label for="status" class="col-lg-2 control-label">
+            <?=$this->getTrans('status') ?>
+        </label>
+        <div class="col-lg-4">
+            <select class="form-control" id="status" name="status">
+                <option value="0" <?=($this->get('ticket') && $this->get('ticket')->getStatus() == 0) ? 'selected' : '' ?>><?=$this->getTrans('openTickets') ?></option>
+                <option value="1" <?=($this->get('ticket') && $this->get('ticket')->getStatus() == 1) ? 'selected' : '' ?>><?=$this->getTrans('editTickets') ?></option>
+                <option value="2" <?=($this->get('ticket') && $this->get('ticket')->getStatus() == 2) ? 'selected' : '' ?>><?=$this->getTrans('compTickets') ?></option>
+                <option value="3" <?=($this->get('ticket') && $this->get('ticket')->getStatus() == 3) ? 'selected' : '' ?>><?=$this->getTrans('closeTickets') ?></option>
+            </select>
         </div>
-    <?php endif; ?>
+    </div>
     <div class="form-group">
         <label for="cat" class="col-lg-2 control-label">
             <?=$this->getTrans('cat') ?>
