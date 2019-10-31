@@ -51,6 +51,13 @@ class Ticket extends \Ilch\Model
     protected $editor;
 
     /**
+     * The Creator.
+     *
+     * @var int
+     */
+    protected $creator;
+
+    /**
      * The Category.
      *
      * @var int
@@ -181,6 +188,29 @@ class Ticket extends \Ilch\Model
     public function setEditor($editor)
     {
         $this->editor = (int)$editor;
+
+        return $this;
+    }
+
+    /**
+     * Gets the Creator.
+     *
+     * @return int
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Sets the Creator.
+     *
+     * @param int $editor
+     * @return $this
+     */
+    public function setCreator($creator)
+    {
+        $this->creator = (int)$creator;
 
         return $this;
     }

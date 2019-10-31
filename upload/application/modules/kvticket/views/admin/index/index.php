@@ -17,6 +17,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -25,13 +26,15 @@
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
                         <th><?=$this->getTrans('cat') ?></th>
+                        <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($this->get('openTickets') as $ticket): ?>
-                            <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
+                            <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
+                            <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
                             <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                             <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                             <tr>
@@ -40,7 +43,8 @@
                                 <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                                 <td><?=$this->escape($ticket->getTitle()) ?></td>
                                 <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                                <td><?=($user) ? $user->getName() : '' ?></td>
+                                <td><?=($creator) ? $creator->getName() : '' ?></td>
+                                <td><?=($editor) ? $editor->getName() : '' ?></td>
                                 <td><?=$datetime->format('d.m.Y H:i') ?></td>
                             </tr>
                         <?php endforeach; ?>
@@ -61,6 +65,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -69,13 +74,15 @@
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
                         <th><?=$this->getTrans('cat') ?></th>
+                        <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('editTickets') as $ticket): ?>
-                        <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
+                        <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
+                        <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
@@ -84,7 +91,8 @@
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($user) ? $user->getName() : '' ?></td>
+                            <td><?=($creator) ? $creator->getName() : '' ?></td>
+                            <td><?=($editor) ? $editor->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -105,6 +113,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -113,13 +122,15 @@
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
                         <th><?=$this->getTrans('cat') ?></th>
+                        <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('compTickets') as $ticket): ?>
-                        <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
+                        <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
+                        <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
@@ -128,7 +139,8 @@
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($user) ? $user->getName() : '' ?></td>
+                            <td><?=($creator) ? $creator->getName() : '' ?></td>
+                            <td><?=($editor) ? $editor->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -148,6 +160,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -155,13 +168,15 @@
                         <th></th>
                         <th><?=$this->getTrans('menuTickets') ?></th>
                         <th><?=$this->getTrans('cat') ?></th>
+                        <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
                         <th><?=$this->getTrans('datetime') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('closeTickets') as $ticket): ?>
-                        <?php $user = $userMapper->getUserById($ticket->getEditor()); ?>
+                        <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
+                        <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
                         <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
                         <tr>
@@ -169,7 +184,8 @@
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($user) ? $user->getName() : '' ?></td>
+                            <td><?=($creator) ? $creator->getName() : '' ?></td>
+                            <td><?=($editor) ? $editor->getName() : '' ?></td>
                             <td><?=$datetime->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>

@@ -7,7 +7,7 @@
         </label>
         <div class="col-lg-4">
             <select class="form-control" id="cat" name="cat">
-                <option value="0" selected></option>
+                <option value="0" selected><?=$this->getTrans('noSelection') ?></option>
             <?php foreach ($this->get('cats') as $cat): ?>
                 <option value="<?=$cat->getId() ?>"><?=$cat->getTitle() ?></option>
             <?php endforeach; ?>

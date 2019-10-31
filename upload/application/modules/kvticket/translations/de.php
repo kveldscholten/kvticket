@@ -11,6 +11,7 @@ return [
     'entry' => 'Eintragen',
     'status' => 'Status',
     'editor' => 'Bearbeiter',
+    'creator' => 'Ersteller',
     'datetime' => 'Datum / Uhrzeit',
     'title' => 'Titel',
     'cat' => 'Kategorie',
@@ -26,4 +27,5 @@ return [
     'show' => 'Anzeigen',
     'back' => 'Zurück',
     'search' => 'Suche',
+    'noSelection' => 'Keine Auswahl',
 ];

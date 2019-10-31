@@ -39,6 +39,7 @@ class Ticket extends \Ilch\Mapper
                 ->setDatetime($entries['datetime'])
                 ->setStatus($entries['status'])
                 ->setEditor($entries['editor'])
+                ->setCreator($entries['creator'])
                 ->setCat($entries['cat']);
             $tickets[] = $entryModel;
         }
@@ -71,6 +72,7 @@ class Ticket extends \Ilch\Mapper
             'text' => $ticket->getText(),
             'status' => $ticket->getStatus(),
             'editor' => $ticket->getEditor(),
+            'creator' => $ticket->getCreator(),
             'cat' => $ticket->getCat()
         ];
 

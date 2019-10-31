@@ -11,6 +11,7 @@ return [
     'entry' => 'Entry',
     'status' => 'Status',
     'editor' => 'Editor',
+    'creator' => 'Creator',
     'datetime' => 'Date / Time',
     'title' => 'Title',
     'cat' => 'Category',
@@ -26,4 +27,5 @@ return [
     'show' => 'Show',
     'back' => 'Back',
     'search' => 'Search',
+    'noSelection' => 'No selection',
 ];

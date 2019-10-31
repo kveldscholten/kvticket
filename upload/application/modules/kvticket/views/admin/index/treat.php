@@ -20,7 +20,7 @@
         </label>
         <div class="col-lg-4">
             <select class="form-control" id="cat" name="cat">
-                <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>></option>
+                <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>><?=$this->getTrans('noSelection') ?></option>
             <?php foreach ($this->get('cats') as $cat): ?>
                 <option value="<?=$cat->getId() ?>" <?=($this->get('ticket') && $this->get('ticket')->getCat() == $cat->getId()) ? 'selected' : '' ?>><?=$cat->getTitle() ?></option>
             <?php endforeach; ?>
@@ -58,7 +58,7 @@
         </label>
         <div class="col-lg-4">
             <select class="chosen-select form-control" id="editor" name="editor" data-placeholder="<?=$this->getTrans('selectuser') ?>">
-            <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>></option>
+            <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>><?=$this->getTrans('noSelection') ?></option>
                 <?php foreach ($this->get('users') as $user): ?>
                 <?php if ($user->hasAccess('module_kvticket',true) != ''): ?>
                     <option value="<?=$user->getId() ?>" <?=(($this->get('ticket') && $this->get('ticket')->getEditor() == $user->getId()) || ((!$this->get('ticket') || $this->get('ticket')->getEditor() == 0) && $user->getId() == $this->getUser()->getId())) ? 'selected' : '' ?>><?=$this->escape($user->getName()) ?></option>

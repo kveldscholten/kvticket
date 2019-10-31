@@ -28,7 +28,7 @@ class Index extends \Ilch\Controller\Frontend
         $this->getLayout()->getHmenu()
             ->add($this->getTranslator()->trans('menuTickets'), ['action' => 'index']);
 
-        $columns = array('datetime', 'title', 'editor', 'status', 'cat');
+        $columns = array('datetime', 'title', 'creator', 'editor', 'status', 'cat');
         $column = $this->getRequest()->getParam('column') && in_array($this->getRequest()->getParam('column'), $columns) ? $this->getRequest()->getParam('column') : $columns[0];
         $sort_order = $this->getRequest()->getParam('order') && strtolower($this->getRequest()->getParam('order')) == 'asc' ? 'ASC' : 'DESC';
 
@@ -100,6 +100,9 @@ class Index extends \Ilch\Controller\Frontend
                 $ticketModel->setTitle($this->getRequest()->getPost('title'))
                     ->setText($this->getRequest()->getPost('text'))
                     ->setCat($this->getRequest()->getPost('cat'));
+                if ($this->getUser()) {
+                    $ticketModel->setCreator($this->getUser()->getId());
+                }
                 $ticketMapper->save($ticketModel);
 
                 $this->redirect()

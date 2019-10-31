@@ -19,20 +19,23 @@
                         <col class="col-lg-2" />
                         <col class="col-lg-2" />
                         <col class="col-lg-2" />
+                        <col class="col-lg-2" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th><a href="<?=$this->getUrl(['column' => 'title', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('title') ?>"><?=$this->getTrans('title') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'title' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
                             <th><a href="<?=$this->getUrl(['column' => 'cat', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('cat') ?>"><?=$this->getTrans('cat') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'cat' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
                             <th><a href="<?=$this->getUrl(['column' => 'datetime', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('datetime') ?>"><?=$this->getTrans('datetime') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'datetime' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
+                            <th><a href="<?=$this->getUrl(['column' => 'creator', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('creator') ?>"><?=$this->getTrans('creator') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'creator' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
                             <th><a href="<?=$this->getUrl(['column' => 'editor', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('editor') ?>"><?=$this->getTrans('editor') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'editor' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
                             <th><a href="<?=$this->getUrl(['column' => 'status', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('status') ?>"><?=$this->getTrans('status') ?><i class="fa fa-sort<?php echo $this->get('sort_column') == 'status' ? '-' . str_replace(array('ASC','DESC'), array('up','down'), $this->get('sort_order')) : ''; ?>"></i></a></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($this->get('tickets') as $ticket): ?>
-                            <?php 
-                            $user = $userMapper->getUserById($ticket->getEditor());
+                            <?php
+                            $creator = $userMapper->getUserById($ticket->getCreator());
+                            $editor = $userMapper->getUserById($ticket->getEditor());
                             $datetime = new \Ilch\Date($ticket->getDatetime());
                             $cat = $catMapper->getCategoryById($ticket->getCat());
 
@@ -56,9 +59,10 @@
                                         <?=$this->escape($ticket->getTitle()) ?>
                                     </a>
                                 </td>
-                                <td <?=($this->get('sort_column') == 'datetime'?'class="table-active"':'') ?>><?=($cat ? $cat->getTitle() : '') ?></td>
+                                <td <?=($this->get('sort_column') == 'cat'?'class="table-active"':'') ?>><?=($cat ? $cat->getTitle() : '') ?></td>
                                 <td <?=($this->get('sort_column') == 'datetime'?'class="table-active"':'') ?>><?=$datetime->format('d.m.Y H:i') ?></td>
-                                <td <?=($this->get('sort_column') == 'editor'?'class="table-active"':'') ?>><?=($user) ? $user->getName() : '' ?></td>
+                                <td <?=($this->get('sort_column') == 'creator'?'class="table-active"':'') ?>><?=($creator) ? $creator->getName() : '' ?></td>
+                                <td <?=($this->get('sort_column') == 'editor'?'class="table-active"':'') ?>><?=($editor) ? $editor->getName() : '' ?></td>
                                 <td <?=($this->get('sort_column') == 'status'?'class="table-active"':'') ?>><?=$ticketStatus ?></td>
                             </tr>
                         <?php endforeach; ?>
