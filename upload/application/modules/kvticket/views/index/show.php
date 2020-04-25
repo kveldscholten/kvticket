@@ -1,28 +1,15 @@
 <?php
-$userMapper = $this->get('userMapper');
 $catMapper = $this->get('catMapper');
+$userMapper = $this->get('userMapper');
+
 $ticket = $this->get('ticket');
-$datetime = new \Ilch\Date($ticket->getDatetime());
-$user = $userMapper->getUserById($ticket->getEditor());
+$creator = $userMapper->getUserById($ticket->getCreator());
+$editor = $userMapper->getUserById($ticket->getEditor());
+$createdAt = new \Ilch\Date($ticket->getCreatedAt());
+$updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
 ?>
 
 <h1><?=$ticket->getTitle() ?></h1>
-<div class="row">
-    <div class="col-lg-2">
-        <b><?=$this->getTrans('datetime') ?></b>
-    </div>
-    <div class="col-lg-8">
-        <?=$datetime->format('d.m.Y H:i') ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-2">
-        <b><?=$this->getTrans('editor') ?></b>
-    </div>
-    <div class="col-lg-8">
-        <?=($user) ? $user->getName() : '' ?>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-2">
         <b><?=$this->getTrans('status') ?></b>
@@ -37,6 +24,39 @@ $user = $userMapper->getUserById($ticket->getEditor());
         } else {
             echo $this->getTrans('openTickets');
         } ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('creator') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=($creator) ? $creator->getName() : '' ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('editor') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=($editor) ? $editor->getName() : '' ?>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('createdAt') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=$createdAt->format('d.m.Y H:i') ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <b><?=$this->getTrans('updatedAt') ?></b>
+    </div>
+    <div class="col-lg-8">
+        <?=$updatedAt->format('d.m.Y H:i') ?>
     </div>
 </div>
 <?php if ($ticket && $ticket->getCat() > 0): ?>

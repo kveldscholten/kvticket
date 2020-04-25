@@ -30,13 +30,6 @@ class Ticket extends \Ilch\Model
     protected $text;
 
     /**
-     * The Datetime.
-     *
-     * @var string
-     */
-    protected $datetime;
-
-    /**
      * The Status.
      *
      * @var int
@@ -63,6 +56,20 @@ class Ticket extends \Ilch\Model
      * @var int
      */
     protected $cat;
+
+    /**
+     * The created at Datetime.
+     *
+     * @var string
+     */
+    protected $created_at;
+
+    /**
+     * The updated at Datetime.
+     *
+     * @var string
+     */
+    protected $updated_at;
 
     /**
      * Sets the Id.
@@ -119,29 +126,6 @@ class Ticket extends \Ilch\Model
     public function setText($text)
     {
         $this->text = (string)$text;
-
-        return $this;
-    }
-
-    /**
-     * Gets the Datetime.
-     *
-     * @return string
-     */
-    public function getDatetime()
-    {
-        return $this->datetime;
-    }
-
-    /**
-     * Sets the Datetime.
-     *
-     * @param string $datetime
-     * @return $this
-     */
-    public function setDatetime($datetime)
-    {
-        $this->datetime = (string)$datetime;
 
         return $this;
     }
@@ -234,6 +218,52 @@ class Ticket extends \Ilch\Model
     public function setCat($cat)
     {
         $this->cat = (int)$cat;
+
+        return $this;
+    }
+
+    /**
+     * Gets the created at Datetime.
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Sets the created at Datetime.
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = (string)$created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets the updated at Datetime.
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Sets the updated at Datetime.
+     *
+     * @param string $updated_at
+     * @return $this
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = (string)$updated_at;
 
         return $this;
     }

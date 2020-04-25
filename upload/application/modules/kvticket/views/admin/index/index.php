@@ -18,6 +18,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -28,15 +29,17 @@
                         <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
-                        <th><?=$this->getTrans('datetime') ?></th>
+                        <th><?=$this->getTrans('createdAt') ?></th>
+                        <th><?=$this->getTrans('updatedAt') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($this->get('openTickets') as $ticket): ?>
                             <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
                             <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
-                            <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                             <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
+                            <?php $createdAt = new \Ilch\Date($ticket->getCreatedAt()); ?>
+                            <?php $updatedAt = new \Ilch\Date($ticket->getUpdatedAt()); ?>
                             <tr>
                                 <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                                 <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
@@ -45,7 +48,8 @@
                                 <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                                 <td><?=($creator) ? $creator->getName() : '' ?></td>
                                 <td><?=($editor) ? $editor->getName() : '' ?></td>
-                                <td><?=$datetime->format('d.m.Y H:i') ?></td>
+                                <td><?=$createdAt->format('d.m.Y H:i') ?></td>
+                                <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -66,6 +70,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -76,15 +81,17 @@
                         <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
-                        <th><?=$this->getTrans('datetime') ?></th>
+                        <th><?=$this->getTrans('createdAt') ?></th>
+                        <th><?=$this->getTrans('updatedAt') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('editTickets') as $ticket): ?>
                         <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
                         <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
-                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
+                        <?php $createdAt = new \Ilch\Date($ticket->getCreatedAt()); ?>
+                        <?php $updatedAt = new \Ilch\Date($ticket->getUpdatedAt()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
@@ -93,7 +100,8 @@
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($creator) ? $creator->getName() : '' ?></td>
                             <td><?=($editor) ? $editor->getName() : '' ?></td>
-                            <td><?=$datetime->format('d.m.Y H:i') ?></td>
+                            <td><?=$createdAt->format('d.m.Y H:i') ?></td>
+                            <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -114,6 +122,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -124,15 +133,17 @@
                         <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
-                        <th><?=$this->getTrans('datetime') ?></th>
+                        <th><?=$this->getTrans('createdAt') ?></th>
+                        <th><?=$this->getTrans('updatedAt') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('compTickets') as $ticket): ?>
                         <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
                         <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
-                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
+                        <?php $createdAt = new \Ilch\Date($ticket->getCreatedAt()); ?>
+                        <?php $updatedAt = new \Ilch\Date($ticket->getUpdatedAt()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
@@ -141,7 +152,8 @@
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($creator) ? $creator->getName() : '' ?></td>
                             <td><?=($editor) ? $editor->getName() : '' ?></td>
-                            <td><?=$datetime->format('d.m.Y H:i') ?></td>
+                            <td><?=$createdAt->format('d.m.Y H:i') ?></td>
+                            <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -161,6 +173,7 @@
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
                         <col class="col-lg-1" />
+                        <col class="col-lg-1" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -170,15 +183,17 @@
                         <th><?=$this->getTrans('cat') ?></th>
                         <th><?=$this->getTrans('creator') ?></th>
                         <th><?=$this->getTrans('editor') ?></th>
-                        <th><?=$this->getTrans('datetime') ?></th>
+                        <th><?=$this->getTrans('createdAt') ?></th>
+                        <th><?=$this->getTrans('updatedAt') ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($this->get('closeTickets') as $ticket): ?>
                         <?php $creator = $userMapper->getUserById($ticket->getCreator()); ?>
                         <?php $editor = $userMapper->getUserById($ticket->getEditor()); ?>
-                        <?php $datetime = new \Ilch\Date($ticket->getDatetime()); ?>
                         <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
+                        <?php $createdAt = new \Ilch\Date($ticket->getCreatedAt()); ?>
+                        <?php $updatedAt = new \Ilch\Date($ticket->getUpdatedAt()); ?>
                         <tr>
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
@@ -186,7 +201,8 @@
                             <td><?=($cat) ? $cat->getTitle() : '' ?></td>
                             <td><?=($creator) ? $creator->getName() : '' ?></td>
                             <td><?=($editor) ? $editor->getName() : '' ?></td>
-                            <td><?=$datetime->format('d.m.Y H:i') ?></td>
+                            <td><?=$createdAt->format('d.m.Y H:i') ?></td>
+                            <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

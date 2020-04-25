@@ -17,7 +17,7 @@ class Ticket extends \Ilch\Mapper
      * @param array $order
      * @return TicketModel[]|array
      */
-    public function getTickets($where = [], $order = ['datetime' => 'DESC'])
+    public function getTickets($where = [], $order = ['created_at' => 'DESC'])
     {
         $entryArray = $this->db()->select('*')
             ->from('kvticket')
@@ -36,11 +36,12 @@ class Ticket extends \Ilch\Mapper
             $entryModel->setId($entries['id'])
                 ->setTitle($entries['title'])
                 ->setText($entries['text'])
-                ->setDatetime($entries['datetime'])
                 ->setStatus($entries['status'])
                 ->setEditor($entries['editor'])
                 ->setCreator($entries['creator'])
-                ->setCat($entries['cat']);
+                ->setCat($entries['cat'])
+                ->setCreatedAt($entries['created_at'])
+                ->setUpdatedAt($entries['updated_at']);
             $tickets[] = $entryModel;
         }
 
