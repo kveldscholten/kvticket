@@ -48,8 +48,8 @@ class Config extends \Ilch\Config\Install
                 `editor` INT(11) NOT NULL DEFAULT 0,
                 `creator` INT(11) NOT NULL DEFAULT 0,
                 `cat` INT(11) NOT NULL DEFAULT 0,
-                `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-                `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+                `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
@@ -82,8 +82,8 @@ class Config extends \Ilch\Config\Install
                 $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `creator` INT(11) NOT NULL DEFAULT 0 AFTER `editor`;');
             case "1.3.0":
                 // Add created_at and updated_at
-                $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `cat`;');
-                $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `created_at`;');
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER `cat`;');
+                $this->db()->query('ALTER TABLE `[prefix]_kvticket` ADD `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `created_at`;');
                 // Convert old datetime to new created_at
                 $entries = $this->db()
                     ->select('*')
