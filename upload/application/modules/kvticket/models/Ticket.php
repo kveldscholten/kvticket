@@ -189,7 +189,7 @@ class Ticket extends \Ilch\Model
     /**
      * Sets the Creator.
      *
-     * @param int $editor
+     * @param $creator
      * @return $this
      */
     public function setCreator($creator)

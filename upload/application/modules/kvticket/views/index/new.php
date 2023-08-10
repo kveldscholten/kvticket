@@ -9,7 +9,7 @@
             <select class="form-control" id="cat" name="cat">
                 <option value="0" selected><?=$this->getTrans('noSelection') ?></option>
             <?php foreach ($this->get('cats') as $cat): ?>
-                <option value="<?=$cat->getId() ?>"><?=$cat->getTitle() ?></option>
+                <option value="<?=$cat->getId() ?>"><?=$this->escape($cat->getTitle()) ?></option>
             <?php endforeach; ?>
             </select>
         </div>
@@ -34,7 +34,7 @@
             <textarea class="form-control ckeditor"
                       id="text"
                       name="text"
-                      toolbar="ilch_bbcode"
+                      toolbar="ilch_html_frontend"
                       rows="5"><?=$this->originalInput('text') ?></textarea>
         </div>
     </div>
@@ -60,7 +60,7 @@
                         document.getElementById('captcha').src='<?=$this->getUrl() ?>/application/libraries/Captcha/Captcha.php?'+Math.random();
                         document.getElementById('captcha-form').focus();"
                    id="change-image">
-                    <i class="fa fa-refresh"></i>
+                    <i class="fa-solid fa-arrows-rotate"></i>
                 </a>
             </span>
         </div>

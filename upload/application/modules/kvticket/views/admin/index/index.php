@@ -45,9 +45,9 @@
                                 <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                                 <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                                 <td><?=$this->escape($ticket->getTitle()) ?></td>
-                                <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                                <td><?=($creator) ? $creator->getName() : '' ?></td>
-                                <td><?=($editor) ? $editor->getName() : '' ?></td>
+                                <td><?=($cat) ? $this->escape($cat->getTitle()) : '' ?></td>
+                                <td><?=($creator) ? $this->escape($creator->getName()) : '' ?></td>
+                                <td><?=($editor) ? $this->escape($editor->getName()) : '' ?></td>
                                 <td><?=$createdAt->format('d.m.Y H:i') ?></td>
                                 <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                             </tr>
@@ -97,9 +97,9 @@
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
-                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($creator) ? $creator->getName() : '' ?></td>
-                            <td><?=($editor) ? $editor->getName() : '' ?></td>
+                            <td><?=($cat) ? $this->escape($cat->getTitle()) : '' ?></td>
+                            <td><?=($creator) ? $this->escape($creator->getName()) : '' ?></td>
+                            <td><?=($editor) ? $this->escape($editor->getName()) : '' ?></td>
                             <td><?=$createdAt->format('d.m.Y H:i') ?></td>
                             <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>
@@ -149,9 +149,9 @@
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
-                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($creator) ? $creator->getName() : '' ?></td>
-                            <td><?=($editor) ? $editor->getName() : '' ?></td>
+                            <td><?=($cat) ? $this->escape($cat->getTitle()) : '' ?></td>
+                            <td><?=($creator) ? $this->escape($creator->getName()) : '' ?></td>
+                            <td><?=($editor) ? $this->escape($editor->getName()) : '' ?></td>
                             <td><?=$createdAt->format('d.m.Y H:i') ?></td>
                             <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>
@@ -198,9 +198,9 @@
                             <td><?=$this->getDeleteCheckbox('check_tickets', $ticket->getId()) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $ticket->getId()]) ?></td>
                             <td><?=$this->escape($ticket->getTitle()) ?></td>
-                            <td><?=($cat) ? $cat->getTitle() : '' ?></td>
-                            <td><?=($creator) ? $creator->getName() : '' ?></td>
-                            <td><?=($editor) ? $editor->getName() : '' ?></td>
+                            <td><?=($cat) ? $this->escape($cat->getTitle()) : '' ?></td>
+                            <td><?=($creator) ? $this->escape($creator->getName()) : '' ?></td>
+                            <td><?=($editor) ? $this->escape($editor->getName()) : '' ?></td>
                             <td><?=$createdAt->format('d.m.Y H:i') ?></td>
                             <td><?=$updatedAt->format('d.m.Y H:i') ?></td>
                         </tr>

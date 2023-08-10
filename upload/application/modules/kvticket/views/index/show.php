@@ -9,7 +9,7 @@ $createdAt = new \Ilch\Date($ticket->getCreatedAt());
 $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
 ?>
 
-<h1><?=$ticket->getTitle() ?></h1>
+<h1><?=$this->escape($ticket->getTitle()) ?></h1>
 <div class="row">
     <div class="col-lg-2">
         <b><?=$this->getTrans('status') ?></b>
@@ -31,7 +31,7 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
         <b><?=$this->getTrans('creator') ?></b>
     </div>
     <div class="col-lg-8">
-        <?=($creator) ? $creator->getName() : '' ?>
+        <?=($creator) ? $this->escape($creator->getName()) : '' ?>
     </div>
 </div>
 <div class="row">
@@ -39,7 +39,7 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
         <b><?=$this->getTrans('editor') ?></b>
     </div>
     <div class="col-lg-8">
-        <?=($editor) ? $editor->getName() : '' ?>
+        <?=($editor) ? $this->escape($editor->getName()) : '' ?>
     </div>
 </div>
 <br />
@@ -66,7 +66,7 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
         <b><?=$this->getTrans('cat') ?></b>
     </div>
     <div class="col-lg-8">
-        <?=$cat->getTitle() ?>
+        <?=$this->escape($cat->getTitle()) ?>
     </div>
 </div>
 <?php endif; ?>
@@ -76,7 +76,7 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
         <b><?=$this->getTrans('desc') ?></b>
     </div>
     <div class="col-lg-12">
-        <?=$ticket->getText() ?>
+        <?=$this->alwaysPurify($ticket->getText()) ?>
     </div>
 </div>
 <br />

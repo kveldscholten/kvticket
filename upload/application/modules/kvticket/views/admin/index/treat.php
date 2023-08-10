@@ -22,7 +22,7 @@
             <select class="form-control" id="cat" name="cat">
                 <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>><?=$this->getTrans('noSelection') ?></option>
             <?php foreach ($this->get('cats') as $cat): ?>
-                <option value="<?=$cat->getId() ?>" <?=($this->get('ticket') && $this->get('ticket')->getCat() == $cat->getId()) ? 'selected' : '' ?>><?=$cat->getTitle() ?></option>
+                <option value="<?=$cat->getId() ?>" <?=($this->get('ticket') && $this->get('ticket')->getCat() == $cat->getId()) ? 'selected' : '' ?>><?=$this->escape($cat->getTitle()) ?></option>
             <?php endforeach; ?>
             </select>
         </div>

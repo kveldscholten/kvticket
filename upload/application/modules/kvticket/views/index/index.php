@@ -24,37 +24,37 @@
                         <tr>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'title', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('title') ?>">
-                                    <?=$this->getTrans('title') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'title' ? '-' . str_replace(['ASC','DESC'],['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('title') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'title' ? '-' . str_replace(['ASC','DESC'],['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'cat', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('cat') ?>">
-                                    <?=$this->getTrans('cat') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'cat' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('cat') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'cat' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'status', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('status') ?>">
-                                    <?=$this->getTrans('status') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'status' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('status') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'status' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'creator', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('creator') ?>">
-                                    <?=$this->getTrans('creator') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'creator' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('creator') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'creator' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'editor', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('editor') ?>">
-                                    <?=$this->getTrans('editor') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'editor' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('editor') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'editor' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'created_at', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('createdAt') ?>">
-                                    <?=$this->getTrans('createdAt') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'created_at' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('createdAt') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'created_at' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                             <th>
                                 <a href="<?=$this->getUrl(['column' => 'updated_at', 'order' => $this->get('sort_order') == 'ASC'  ? 'desc' : 'asc']) ?>" title="<?=$this->getTrans('updatedAt') ?>">
-                                    <?=$this->getTrans('updatedAt') ?> <i class="fa fa-sort<?=$this->get('sort_column') == 'updated_at' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
+                                    <?=$this->getTrans('updatedAt') ?> <i class="fa-solid fa-sort<?=$this->get('sort_column') == 'updated_at' ? '-' . str_replace(['ASC','DESC'], ['up','down'], $this->get('sort_order')) : ''; ?>"></i>
                                 </a>
                             </th>
                         </tr>
@@ -89,16 +89,16 @@
                                     </a>
                                 </td>
                                 <td<?=($this->get('sort_column') == 'cat' ? ' class="table-active"' : '') ?>>
-                                    <?=($cat ? $cat->getTitle() : '') ?>
+                                    <?=($cat ? $this->escape($cat->getTitle()) : '') ?>
                                 </td>
                                 <td<?=($this->get('sort_column') == 'status' ? ' class="table-active"' : '') ?>>
                                     <?=$ticketStatus ?>
                                 </td>
                                 <td<?=($this->get('sort_column') == 'creator' ? ' class="table-active"' : '') ?>>
-                                    <?=($creator) ? $creator->getName() : '' ?>
+                                    <?=($creator) ? $this->escape($creator->getName()) : '' ?>
                                 </td>
                                 <td<?=($this->get('sort_column') == 'editor' ? ' class="table-active"' : '') ?>>
-                                    <?=($editor) ? $editor->getName() : '' ?>
+                                    <?=($editor) ? $this->escape($editor->getName()) : '' ?>
                                 </td>
                                 <td<?=($this->get('sort_column') == 'created_at' ? ' class="table-active"' : '') ?>>
                                     <?=$createdAt->format('d.m.Y H:i') ?>

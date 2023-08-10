@@ -10,8 +10,8 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvticket',
-        'version' => '1.4.0',
-        'icon_small' => 'fa-ticket',
+        'version' => '1.5.0',
+        'icon_small' => 'fa-solid fa-ticket',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
             'de_DE' => [
@@ -23,8 +23,8 @@ class Config extends \Ilch\Config\Install
                 'description' => 'With this module, your users can report tickets/bugs.',
             ],
         ],
-        'ilchCore' => '2.1.15',
-        'phpVersion' => '5.6'
+        'ilchCore' => '2.1.52',
+        'phpVersion' => '7.3'
     ];
 
     public function install()
@@ -99,6 +99,9 @@ class Config extends \Ilch\Config\Install
                 }
                 // Remove no longer used datetime.
                 $this->db()->query('ALTER TABLE `[prefix]_kvticket` DROP COLUMN `datetime`;');
+            case "1.4.0":
+                // Update icon for FontAwesome 6.
+                $this->db()->query("UPDATE `[prefix]_modules` SET `icon_small` = '" . $this->config['icon_small'] . "' WHERE `key` = '" . $this->config['key'] . "';");
         }
     }
 }
