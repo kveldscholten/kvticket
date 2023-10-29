@@ -4,7 +4,7 @@
 <h1><?=$this->getTrans('menuTickets') ?></h1>
 <?php if ($this->get('tickets')): ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-xl-12">
             <div class="searchfield">
                 <input class="form-control" id="system-search" name="q" placeholder="<?=$this->getTrans('search') ?>" />
             </div>
@@ -13,12 +13,12 @@
                 <table class="table table-hover table-striped table-list-search">
                     <colgroup>
                         <col />
-                        <col class="col-lg-2" />
-                        <col class="col-lg-2" />
-                        <col class="col-lg-2" />
-                        <col class="col-lg-2" />
-                        <col class="col-lg-2" />
-                        <col class="col-lg-2" />
+                        <col class="col-xl-2" />
+                        <col class="col-xl-2" />
+                        <col class="col-xl-2" />
+                        <col class="col-xl-2" />
+                        <col class="col-xl-2" />
+                        <col class="col-xl-2" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -69,41 +69,45 @@
                             $cat = $catMapper->getCategoryById($ticket->getCat());
 
                             if ($ticket->getStatus() == 1) {
-                                $ticketCSS = 'info';
+                                $ticketCSS = 'bg-info';
                                 $ticketStatus = $this->getTrans('editTickets');
+                                $linkcolor = 'text-white';
                             } elseif ($ticket->getStatus() == 2) {
-                                $ticketCSS = 'success';
+                                $ticketCSS = 'bg-success';
                                 $ticketStatus = $this->getTrans('compTickets');
+                                $linkcolor = 'text-white';
                             } elseif ($ticket->getStatus() == 3) {
-                                $ticketCSS = 'danger';
+                                $ticketCSS = 'bg-danger';
                                 $ticketStatus = $this->getTrans('closeTickets');
+                                $linkcolor = 'text-white';
                             } else {
                                 $ticketCSS = '';
                                 $ticketStatus = $this->getTrans('openTickets');
+                                $linkcolor = '';
                             } ?>
 
                             <tr <?=($ticketCSS) ? 'class="'.$ticketCSS.'"' : '' ?>>
-                                <td <?=($this->get('sort_column') == 'title'?'class="table-active"':'') ?>>
-                                    <a href="<?=$this->getUrl(['action' => 'show', 'id' => $ticket->getId()]) ?>" title="<?=$this->escape($ticket->getTitle()) ?>">
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'title'?' table-active':'') ?>">
+                                    <a href="<?=$this->getUrl(['action' => 'show', 'id' => $ticket->getId()]) ?>" class="<?=$linkcolor ?>" title="<?=$this->escape($ticket->getTitle()) ?>">
                                         <?=$this->escape($ticket->getTitle()) ?>
                                     </a>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'cat' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'cat'?' table-active':'') ?>">
                                     <?=($cat ? $this->escape($cat->getTitle()) : '') ?>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'status' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'status'?' table-active':'') ?>">
                                     <?=$ticketStatus ?>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'creator' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'creator'?' table-active':'') ?>">
                                     <?=($creator) ? $this->escape($creator->getName()) : '' ?>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'editor' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'editor'?' table-active':'') ?>">
                                     <?=($editor) ? $this->escape($editor->getName()) : '' ?>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'created_at' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'created_at'?' table-active':'') ?>">
                                     <?=$createdAt->format('d.m.Y H:i') ?>
                                 </td>
-                                <td<?=($this->get('sort_column') == 'updated_at' ? ' class="table-active"' : '') ?>>
+                                <td class="<?=($ticketCSS) ? $ticketCSS : '' ?><?=($this->get('sort_column') == 'updated_at'?' table-active':'') ?>">
                                     <?=$updatedAt->format('d.m.Y H:i') ?>
                                 </td>
                             </tr>
@@ -117,7 +121,7 @@
     <?=$this->getTrans('noTickets') ?>
 <?php endif; ?>
 
-<div class="btn btn-default pull-right">
+<div class="btn btn-outline-secondary pull-right">
     <a href="<?=$this->getUrl(['action' => 'new']) ?>">
         <?=$this->getTrans('entry') ?>
     </a>
