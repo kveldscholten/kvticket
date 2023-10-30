@@ -11,10 +11,10 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
 
 <h1><?=$this->escape($ticket->getTitle()) ?></h1>
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('status') ?></b>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xl-8">
         <?php if ($ticket->getStatus() == 1) {
             echo $this->getTrans('editTickets');
         } elseif ($ticket->getStatus() == 2) {
@@ -27,24 +27,24 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('creator') ?></b>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xl-8">
         <?=($creator) ? $this->escape($creator->getName()) : '' ?>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('editor') ?></b>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xl-8">
         <?=($editor) ? $this->escape($editor->getName()) : '' ?>
     </div>
 </div>
 <br />
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('createdAt') ?></b>
     </div>
     <div class="col-lg-8">
@@ -52,35 +52,35 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('updatedAt') ?></b>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xl-8">
         <?=$updatedAt->format('d.m.Y H:i') ?>
     </div>
 </div>
 <?php if ($ticket && $ticket->getCat() > 0): ?>
 <?php $cat = $catMapper->getCategoryById($ticket->getCat()); ?>
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-xl-2">
         <b><?=$this->getTrans('cat') ?></b>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xl-8">
         <?=$this->escape($cat->getTitle()) ?>
     </div>
 </div>
 <?php endif; ?>
 <br />
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-xl-12">
         <b><?=$this->getTrans('desc') ?></b>
     </div>
-    <div class="col-lg-12">
+    <div class="col-xl-12">
         <?=$this->alwaysPurify($ticket->getText()) ?>
     </div>
 </div>
 <br />
-<div class="btn btn-default">
+<div class="btn btn-outline-secondary">
     <a href="<?=$this->getUrl(['action' => 'index']) ?>">
         <?=$this->getTrans('back') ?>
     </a>
