@@ -10,7 +10,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvticket',
-        'version' => '1.5.0',
+        'version' => '1.6.0',
         'icon_small' => 'fa-solid fa-ticket',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
@@ -23,7 +23,7 @@ class Config extends \Ilch\Config\Install
                 'description' => 'With this module, your users can report tickets/bugs.',
             ],
         ],
-        'ilchCore' => '2.1.52',
+        'ilchCore' => '2.2.0',
         'phpVersion' => '7.3'
     ];
 
@@ -102,6 +102,9 @@ class Config extends \Ilch\Config\Install
             case "1.4.0":
                 // Update icon for FontAwesome 6.
                 $this->db()->query("UPDATE `[prefix]_modules` SET `icon_small` = '" . $this->config['icon_small'] . "' WHERE `key` = '" . $this->config['key'] . "';");
+            case "1.5.0":
         }
+
+        return '"' . $this->config['key'] . '" Update-function executed.';
     }
 }

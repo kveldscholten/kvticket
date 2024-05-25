@@ -1,9 +1,9 @@
 <h1><?=($this->get('cat') != '') ? $this->getTrans('edit') : $this->getTrans('add') ?></h1>
-<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
     <?=$this->getTokenField() ?>
 
-    <div class="row mb-3 <?=$this->validation()->hasError('title') ? 'has-error' : '' ?>">
-        <label for="title" class="col-xl-2 control-label">
+    <div class="row mb-3<?=$this->validation()->hasError('title') ? ' has-error' : '' ?>">
+        <label for="title" class="col-xl-2 col-form-label">
             <?=$this->getTrans('title') ?>
         </label>
         <div class="col-xl-4">
