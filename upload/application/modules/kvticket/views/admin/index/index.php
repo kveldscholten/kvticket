@@ -1,7 +1,7 @@
 <?php $userMapper = $this->get('userMapper'); ?>
 <?php $catMapper = $this->get('catMapper'); ?>
 
-<form class="form-horizontal" method="POST" action="">
+<form method="POST" action="">
     <?=$this->getTokenField() ?>
 
     <?php if ($this->get('tickets')): ?>
@@ -220,7 +220,7 @@
             <input type="hidden" class="content_savebox_hidden" name="action" value="" />
             <div class="btn-group dropup">
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                    <?=$this->getTrans('selected') ?> <span class="caret"></span>
+                    <?=$this->getTrans('selected') ?>
                 </button>
                 <ul class="dropdown-menu listChooser" role="menu">
                     <li><a class="dropdown-item" href="#" data-hiddenkey="delete"><?=$this->getTrans('delete') ?></a></li>

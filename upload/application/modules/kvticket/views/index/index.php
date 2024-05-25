@@ -121,7 +121,7 @@
     <?=$this->getTrans('noTickets') ?>
 <?php endif; ?>
 
-<div class="btn btn-outline-secondary pull-right">
+<div class="btn btn-outline-secondary float-end">
     <a href="<?=$this->getUrl(['action' => 'new']) ?>">
         <?=$this->getTrans('entry') ?>
     </a>
