@@ -75,7 +75,7 @@ $updatedAt = new \Ilch\Date($ticket->getUpdatedAt());
     <div class="col-xl-12">
         <b><?=$this->getTrans('desc') ?></b>
     </div>
-    <div class="col-xl-12">
+    <div class="col-xl-12 ck-content">
         <?=$this->alwaysPurify($ticket->getText()) ?>
     </div>
 </div>

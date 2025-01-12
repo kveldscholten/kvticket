@@ -57,7 +57,7 @@
             <?=$this->getTrans('editor') ?>
         </label>
         <div class="col-xl-4">
-            <select class="chosen-select form-control" id="editor" name="editor" data-placeholder="<?=$this->getTrans('selectuser') ?>">
+            <select class="form-select" id="editor" name="editor">
             <option value="0" <?=(!$this->get('ticket')) ? 'selected' : '' ?>><?=$this->getTrans('noSelection') ?></option>
                 <?php foreach ($this->get('users') as $user): ?>
                 <?php if ($user->hasAccess('module_kvticket',true) != ''): ?>
